@@ -19,7 +19,7 @@ export class AddTutorialComponent implements OnInit {
 
   saveTutorial(): void {
     this.tutorialService.create(this.tutorial).then(() => {
-      console.log('Created new item successfully!');
+      console.log('Nuevo Producto Creado');
       this.submitted = true;
     });
   }

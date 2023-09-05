@@ -2,7 +2,7 @@
   <h4>Tutorial</h4>
   <form>
     <div class="form-group">
-      <label for="title">Title</label>
+      <label for="title">Producto</label>
       <input
         type="text"
         class="form-control"
@@ -12,7 +12,7 @@
       />
     </div>
     <div class="form-group">
-      <label for="description">Description</label>
+      <label for="description">Descripcion</label>
       <input
         type="text"
         class="form-control"
@@ -24,7 +24,7 @@
 
     <div class="form-group">
       <label><strong>Status:</strong></label>
-      {{ currentTutorial.published ? "Published" : "Pending" }}
+      {{ currentTutorial.published ? "Publicado" : "Pendiente" }}
     </div>
   </form>
 
@@ -33,27 +33,27 @@
     *ngIf="currentTutorial.published"
     (click)="updatePublished(false)"
   >
-    UnPublish
+    No Publicar
   </button>
   <button
     *ngIf="!currentTutorial.published"
     class="badge badge-primary mr-2"
     (click)="updatePublished(true)"
   >
-    Publish
+    Publicar
   </button>
 
   <button class="badge badge-danger mr-2" (click)="deleteTutorial()">
-    Delete
+    Eliminar
   </button>
 
   <button type="submit" class="badge badge-success" (click)="updateTutorial()">
-    Update
+    Actualizar
   </button>
   <p>{{ message }}</p>
 </div>
 
 <div *ngIf="!currentTutorial">
   <br />
-  <p>Cannot access this Tutorial...</p>
+  <p>No se puede acceder a este producto</p>
 </div>
