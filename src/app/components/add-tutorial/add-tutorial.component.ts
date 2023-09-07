@@ -32,16 +32,4 @@ export class AddTutorialComponent implements OnInit {
     this.submitted = false;
     this.producto = new Productos();
   }
-
-
-  newBebida():void{
-    this.submitted = false;
-    this.bebida = new Bebidas();
-  }
-
-
-  newFruta():void{
-    this.submitted = false;
-    this.fruta = new Frutas();
-  }
 }

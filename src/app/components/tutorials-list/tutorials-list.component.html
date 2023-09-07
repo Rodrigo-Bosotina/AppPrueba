@@ -6,7 +6,7 @@
         class="list-group-item"
         *ngFor="let producto of productos; let i = index"
         [class.active]="i == IndexActual"
-        (click)="setActiveTutorial(producto, i)"
+        (click)="setActiveTutorial(producto,null,null, i, 1)"
       >
         {{ producto.nombre }}
       </li>
@@ -23,6 +23,67 @@
     <div *ngIf="!productoActual">
       <br />
       <p>Por favor clickea en algun Producto...</p>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="list row">
+  <div class="col-md-6">
+    <h4>Lista de Bebidas</h4>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let bebida of bebidas; let i = index"
+        [class.active]="i == bebidaIndex"
+        (click)="setActiveTutorial(null,bebida,null, i, 2)"
+      >
+        {{ bebida.marca }}
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <div *ngIf="bebidaActual">
+      <app-tutorial-details
+        (refreshList)="refreshList()"
+        [bebida]="bebidaActual"
+      ></app-tutorial-details>
+    </div>
+
+    <div *ngIf="!bebidaActual">
+      <br />
+      <p>Por favor clickea en alguna Bebida...</p>
+    </div>
+  </div>
+</div>
+
+
+<div class="list row">
+  <div class="col-md-6">
+    <h4>Lista de Frutas</h4>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let fruta of frutas; let i = index"
+        [class.active]="i == frutaIndex"
+        (click)="setActiveTutorial(null,null,fruta, i, 3)"
+      >
+        {{ fruta.nombre }}
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <div *ngIf="frutaActual">
+      <app-tutorial-details
+        (refreshList)="refreshList()"
+        [fruta]="frutaActual"
+      ></app-tutorial-details>
+    </div>
+
+    <div *ngIf="!frutaActual">
+      <br />
+      <p>Por favor clickea en alguna Fruta...</p>
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-export default class Productos {
+export default class Bebidas {
     id?: string;
     marca?: string;
     gaseosa?: boolean;

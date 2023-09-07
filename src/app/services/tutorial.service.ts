@@ -14,12 +14,12 @@ export class TutorialService {
 
   productoRef: AngularFirestoreCollection<Productos>;
   bebidaRef: AngularFirestoreCollection<Bebidas>;
-  frutasRef: AngularFirestoreCollection<Frutas>;
+  frutaRef: AngularFirestoreCollection<Frutas>;
 
   constructor(private db: AngularFirestore) {
     this.productoRef = db.collection(this.productosPath);
     this.bebidaRef =db.collection(this.bebidasPath);
-    this.frutasRef = db.collection(this.frutasPath)
+    this.frutaRef = db.collection(this.frutasPath)
   }
 
   getAll(): AngularFirestoreCollection<Productos> {
@@ -31,20 +31,20 @@ export class TutorialService {
   }
 
   getAllFrutas(): AngularFirestoreCollection<Frutas>{
-    return this.frutasRef
+    return this.frutaRef
   }
 
   create(producto: Productos, bebida: Bebidas, fruta:Frutas, opcion:String): any {
-    if(opcion == 'Producto'){
+    if(opcion == 'opcion1'){
       return this.productoRef.add({ ...producto });
     }
-    else if (opcion == 'Bebida')
+    else if (opcion == 'opcion2')
     {
       return this.bebidaRef.add({ ...bebida });
     }
-    else if (opcion == 'Bebida')
+    else if (opcion == 'opcion3')
     {
-      return this.bebidaRef.add({ ...bebida });
+      return this.frutaRef.add({ ...fruta});
     }
 
 

@@ -1,5 +1,7 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
 import Productos from 'src/app/models/productos.model';
+import Bebidas from 'src/app/models/bebidas.model';
+import Frutas from 'src/app/models/fruta.model';
 import { TutorialService } from 'src/app/services/tutorial.service';
 
 @Component({
@@ -10,12 +12,28 @@ import { TutorialService } from 'src/app/services/tutorial.service';
 export class TutorialDetailsComponent implements OnInit, OnChanges {
 
   @Input() producto?: Productos;
+  @Input() bebida?: Bebidas;
+  @Input() fruta?: Frutas;
   @Output() refreshList: EventEmitter<any> = new EventEmitter();
   productoActual: Productos = {
     nombre: '',
     descripcion: '',
     publicado: false
   };
+
+  bebidaActual: Bebidas = {
+    marca: '',
+    gaseosa: false,
+    publicado: false
+  };
+
+  frutaActual: Frutas = {
+    nombre: '',
+    tipo: '',
+    publicado: false
+  };
+
+
   message = '';
 
   constructor(private tutorialService: TutorialService) { }
@@ -27,9 +45,13 @@ export class TutorialDetailsComponent implements OnInit, OnChanges {
   ngOnChanges(): void {
     this.message = '';
     this.productoActual = { ...this.producto };
+    this.bebidaActual = {...this.bebida};
+    this.frutaActual = {...this.fruta}
   }
 
-  updatePublished(status: boolean): void {
+  updatePublished(status: boolean, opcion: number): void {
+
+  if(opcion == 1){
     if (this.productoActual.id) {
       this.tutorialService.update(this.productoActual.id, { publicado: status })
       .then(() => {
@@ -39,29 +61,103 @@ export class TutorialDetailsComponent implements OnInit, OnChanges {
       .catch(err => console.log(err));
     }
   }
+else if(opcion== 2){
+  if (this.bebidaActual.id) {
+    this.tutorialService.update(this.bebidaActual.id, { publicado: status })
+    .then(() => {
+      this.bebidaActual.publicado = status;
+      this.message = 'El estado cambio exitosamente!';
+    })
+    .catch(err => console.log(err));
+  }
+}
+else if (opcion ==3){
+  if (this.frutaActual.id) {
+    this.tutorialService.update(this.frutaActual.id, { publicado: status })
+    .then(() => {
+      this.frutaActual.publicado = status;
+      this.message = 'El estado cambio exitosamente!';
+    })
+    .catch(err => console.log(err));
+  }
+}
 
-  updateTutorial(): void {
-    const data = {
-      nombre: this.productoActual.nombre,
-      descripcion: this.productoActual.descripcion
-    };
-
-    if (this.productoActual.id) {
-      this.tutorialService.update(this.productoActual.id, data)
-        .then(() => this.message = 'El Producto fue actualizado correctamente!')
-        .catch(err => console.log(err));
-    }
   }
 
-  deleteTutorial(): void {
-    if (this.productoActual.id) {
-      this.tutorialService.delete(this.productoActual.id)
-        .then(() => {
-          this.refreshList.emit();
-          this.message = 'El Producto fue actualizado correctamente!';
-        })
-        .catch(err => console.log(err));
+  updateTutorial(opcion: number): void {
+    if(opcion == 1){
+      const data = {
+        nombre: this.productoActual.nombre,
+        descripcion: this.productoActual.descripcion
+      };
+
+      if (this.productoActual.id) {
+        this.tutorialService.update(this.productoActual.id, data)
+          .then(() => this.message = 'El Producto fue actualizado correctamente!')
+          .catch(err => console.log(err));
+      }
     }
+    else if(opcion == 2 ){
+      const data = {
+        marca: this.bebidaActual.marca,
+        gaseosa: this.bebidaActual.gaseosa
+      };
+
+      if (this.bebidaActual.id) {
+        this.tutorialService.update(this.bebidaActual.id, data)
+          .then(() => this.message = 'La Bebida fue actualizada correctamente!')
+          .catch(err => console.log(err));
+      }
+    }
+    else if(opcion == 3){
+      const data = {
+        nombre: this.frutaActual.nombre,
+        tipo: this.frutaActual.tipo
+      };
+
+      if (this.frutaActual.id) {
+        this.tutorialService.update(this.frutaActual.id, data)
+          .then(() => this.message = 'La Fruta fue actualizada correctamente!')
+          .catch(err => console.log(err));
+      }
+    }
+    }
+
+
+
+
+  deleteTutorial(opcion : number): void {
+if (opcion == 1){
+  if (this.productoActual.id) {
+    this.tutorialService.delete(this.productoActual.id)
+      .then(() => {
+        this.refreshList.emit();
+        this.message = 'El Producto fue actualizado correctamente!';
+      })
+      .catch(err => console.log(err));
   }
+}
+else if(opcion == 2){
+  if (this.bebidaActual.id) {
+    this.tutorialService.delete(this.bebidaActual.id)
+      .then(() => {
+        this.refreshList.emit();
+        this.message = 'La Bebida fue actualizada correctamente!';
+      })
+      .catch(err => console.log(err));
+  }
+}
+else if (opcion == 3){
+  if (this.frutaActual.id) {
+    this.tutorialService.delete(this.frutaActual.id)
+      .then(() => {
+        this.refreshList.emit();
+        this.message = 'La Fruta fue actualizada correctamente!';
+      })
+      .catch(err => console.log(err));
+  }
+}
+}
+
 
 }

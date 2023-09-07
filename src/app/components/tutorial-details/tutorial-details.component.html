@@ -31,23 +31,23 @@
   <button
     class="badge badge-primary mr-2"
     *ngIf="productoActual.publicado"
-    (click)="updatePublished(false)"
+    (click)="updatePublished(false, 1)"
   >
     No Publicar
   </button>
   <button
     *ngIf="!productoActual.publicado"
     class="badge badge-primary mr-2"
-    (click)="updatePublished(true)"
+    (click)="updatePublished(true, 1)"
   >
     Publicar
   </button>
 
-  <button class="badge badge-danger mr-2" (click)="deleteTutorial()">
+  <button class="badge badge-danger mr-2" (click)="deleteTutorial(1)">
     Eliminar
   </button>
 
-  <button type="submit" class="badge badge-success" (click)="updateTutorial()">
+  <button type="submit" class="badge badge-success" (click)="updateTutorial(1)">
     Actualizar
   </button>
   <p>{{ message }}</p>
@@ -57,4 +57,131 @@
 <div *ngIf="!productoActual">
   <br />
   <p>No se puede acceder a este producto</p>
+</div>
+
+
+
+<div *ngIf="bebidaActual" class="edit-form">
+  <h4>Bebida</h4>
+  <form>
+    <div class="form-group">
+      <label for="title">Marca</label>
+      <input
+        type="text"
+        class="form-control"
+        id="marca"
+        [(ngModel)]="bebidaActual.marca"
+        name="marca"
+      />
+    </div>
+    <div class="form-group">
+      <label for="gaseosa">Gaseosa</label>
+      <input
+        type="text"
+        class="form-control"
+        id="gaseosa"
+        [(ngModel)]="bebidaActual.gaseosa"
+        name="gaseosa"
+      />
+    </div>
+
+    <div class="form-group">
+      <label><strong>Estado:</strong></label>
+      {{ bebidaActual.publicado ? "Publicado" : "Pendiente" }}
+    </div>
+  </form>
+
+  <button
+    class="badge badge-primary mr-2"
+    *ngIf="bebidaActual.publicado"
+    (click)="updatePublished(false, 2)"
+  >
+    No Publicar
+  </button>
+  <button
+    *ngIf="!bebidaActual.publicado"
+    class="badge badge-primary mr-2"
+    (click)="updatePublished(true, 2)"
+  >
+    Publicar
+  </button>
+
+  <button class="badge badge-danger mr-2" (click)="deleteTutorial(2)">
+    Eliminar
+  </button>
+
+  <button type="submit" class="badge badge-success" (click)="updateTutorial(2)">
+    Actualizar
+  </button>
+  <p>{{ message }}</p>
+</div>
+
+
+<div *ngIf="!bebidaActual">
+  <br />
+  <p>No se puede acceder a esta bebida</p>
+</div>
+
+
+
+
+<div *ngIf="frutaActual" class="edit-form">
+  <h4>Fruta</h4>
+  <form>
+    <div class="form-group">
+      <label for="nombre">Nombre</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nombre"
+        [(ngModel)]="frutaActual.nombre"
+        name="nombre"
+      />
+    </div>
+    <div class="form-group">
+      <label for="description">Tipo</label>
+      <input
+        type="text"
+        class="form-control"
+        id="tipo"
+        [(ngModel)]="frutaActual.tipo"
+        name="tipo"
+      />
+    </div>
+
+    <div class="form-group">
+      <label><strong>Estado:</strong></label>
+      {{ frutaActual.publicado ? "Publicado" : "Pendiente" }}
+    </div>
+  </form>
+
+  <button
+    class="badge badge-primary mr-2"
+    *ngIf="productoActual.publicado"
+    (click)="updatePublished(false, 3)"
+  >
+    No Publicar
+  </button>
+  <button
+    *ngIf="!productoActual.publicado"
+    class="badge badge-primary mr-2"
+    (click)="updatePublished(true, 3)"
+  >
+    Publicar
+  </button>
+
+  <button class="badge badge-danger mr-2" (click)="deleteTutorial(3)">
+    Eliminar
+  </button>
+
+  <button type="submit" class="badge badge-success" (click)="updateTutorial(3)">
+    Actualizar
+  </button>
+  <p>{{ message }}</p>
+</div>
+
+
+<div *ngIf="!frutaActual">
+  <br />
+  <p>No se puede acceder a esta fruta</p>
 </div>
