@@ -50,11 +50,31 @@ export class TutorialService {
 
   }
 
-  update(id: string, data: any): Promise<void> {
-    return this.productoRef.doc(id).update(data);
+  update(id: string, data: any, opcion: number): Promise<void> {
+    if(opcion==1){
+      return this.productoRef.doc(id).update(data);
+    }
+    else if (opcion==2)
+    {
+      return this.bebidaRef.doc(id).update(data);
+    }
+    else if( opcion==3){
+      return this.frutaRef.doc(id).update(data);
+    }
+    return Promise.resolve();
   }
 
-  delete(id: string): Promise<void> {
-    return this.productoRef.doc(id).delete();
+  delete(id: string, opcion: number): Promise<void> {
+    if (opcion == 1){
+      return this.productoRef.doc(id).delete();
+    }
+    else if (opcion==2)
+    {
+      return this.bebidaRef.doc(id).delete();
+    }
+    else if( opcion==3){
+      return this.frutaRef.doc(id).delete();
+    }
+    return Promise.resolve();
   }
 }

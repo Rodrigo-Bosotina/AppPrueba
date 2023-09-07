@@ -1,3 +1,4 @@
+
 <div class="list row">
   <div class="col-md-6">
     <h4>Lista de Productos</h4>
@@ -16,6 +17,7 @@
     <div *ngIf="productoActual">
       <app-tutorial-details
         (refreshList)="refreshList()"
+        [opcion] = "1"
         [producto]="productoActual"
       ></app-tutorial-details>
     </div>
@@ -47,6 +49,7 @@
     <div *ngIf="bebidaActual">
       <app-tutorial-details
         (refreshList)="refreshList()"
+        [opcion] = "2"
         [bebida]="bebidaActual"
       ></app-tutorial-details>
     </div>
@@ -77,6 +80,7 @@
     <div *ngIf="frutaActual">
       <app-tutorial-details
         (refreshList)="refreshList()"
+        [opcion] = "3"
         [fruta]="frutaActual"
       ></app-tutorial-details>
     </div>

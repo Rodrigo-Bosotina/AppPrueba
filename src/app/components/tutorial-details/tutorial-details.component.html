@@ -1,3 +1,6 @@
+
+<div [ngSwitch]="opcion">
+<ng-container *ngSwitchCase="1">
 <div *ngIf="productoActual" class="edit-form">
   <h4>Producto</h4>
   <form>
@@ -52,15 +55,18 @@
   </button>
   <p>{{ message }}</p>
 </div>
-
-
 <div *ngIf="!productoActual">
   <br />
   <p>No se puede acceder a este producto</p>
 </div>
+</ng-container>
 
 
 
+
+
+
+<ng-container *ngSwitchCase="2">
 <div *ngIf="bebidaActual" class="edit-form">
   <h4>Bebida</h4>
   <form>
@@ -115,16 +121,18 @@
   </button>
   <p>{{ message }}</p>
 </div>
-
-
 <div *ngIf="!bebidaActual">
   <br />
   <p>No se puede acceder a esta bebida</p>
 </div>
+</ng-container>
 
 
 
 
+
+
+<ng-container *ngSwitchCase="3">
 <div *ngIf="frutaActual" class="edit-form">
   <h4>Fruta</h4>
   <form>
@@ -157,7 +165,7 @@
 
   <button
     class="badge badge-primary mr-2"
-    *ngIf="productoActual.publicado"
+    *ngIf="frutaActual.publicado"
     (click)="updatePublished(false, 3)"
   >
     No Publicar
@@ -179,9 +187,16 @@
   </button>
   <p>{{ message }}</p>
 </div>
-
-
 <div *ngIf="!frutaActual">
   <br />
   <p>No se puede acceder a esta fruta</p>
+</div>
+</ng-container>
+
+
+<ng-container *ngSwitchDefault>
+  <p>Seleccione una opción válida</p>
+</ng-container>
+
+
 </div>
