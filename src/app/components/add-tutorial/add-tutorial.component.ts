@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import Tutorial from 'src/app/models/tutorial.model';
+import Productos from 'src/app/models/productos.model';
+import Bebidas from 'src/app/models/bebidas.model';
+import Frutas from 'src/app/models/fruta.model';
 import { TutorialService } from 'src/app/services/tutorial.service';
 
 @Component({
@@ -8,8 +10,10 @@ import { TutorialService } from 'src/app/services/tutorial.service';
   styleUrls: ['./add-tutorial.component.css']
 })
 export class AddTutorialComponent implements OnInit {
-
-  tutorial: Tutorial = new Tutorial();
+  opcionSeleccionada: string = '';
+  producto: Productos = new Productos();
+  bebida: Bebidas = new Bebidas();
+  fruta: Frutas = new Frutas();
   submitted = false;
 
   constructor(private tutorialService: TutorialService) { }
@@ -18,7 +22,7 @@ export class AddTutorialComponent implements OnInit {
   }
 
   saveTutorial(): void {
-    this.tutorialService.create(this.tutorial).then(() => {
+    this.tutorialService.create(this.producto,this.bebida,this.fruta,this.opcionSeleccionada).then(() => {
       console.log('Nuevo Producto Creado');
       this.submitted = true;
     });
@@ -26,7 +30,18 @@ export class AddTutorialComponent implements OnInit {
 
   newTutorial(): void {
     this.submitted = false;
-    this.tutorial = new Tutorial();
+    this.producto = new Productos();
   }
 
+
+  newBebida():void{
+    this.submitted = false;
+    this.bebida = new Bebidas();
+  }
+
+
+  newFruta():void{
+    this.submitted = false;
+    this.fruta = new Frutas();
+  }
 }

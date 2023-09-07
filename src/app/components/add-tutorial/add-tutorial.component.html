@@ -1,33 +1,109 @@
 <div class="submit-form">
   <div *ngIf="!submitted">
+
+    <select [(ngModel)]="opcionSeleccionada">
+      <option value="opcion1">Producto</option>
+      <option value="opcion2">Bebida</option>
+      <option value="opcion3">Fruta</option>
+    </select>
+
+<div *ngIf="opcionSeleccionada=== 'opcion1'">
     <div class="form-group">
-      <label for="title">Nombre del Producto</label>
+      <label for="nombre">Nombre del Producto</label>
       <input
         type="text"
         class="form-control"
-        id="title"
+        id="nombre"
         required
-        [(ngModel)]="tutorial.title"
-        name="title"
+        [(ngModel)]="producto.nombre"
+        name="nombre"
       />
     </div>
 
     <div class="form-group">
-      <label for="description">Descripcion del Producto</label>
+      <label for="descripcion">Descripcion del Producto</label>
       <input
         class="form-control"
-        id="description"
+        id="descripcion"
         required
-        [(ngModel)]="tutorial.description"
-        name="description"
+        [(ngModel)]="producto.descripcion"
+        name="descripcion"
       />
     </div>
 
     <button (click)="saveTutorial()" class="btn btn-success">Añadir producto</button>
-  </div>
 
-  <div *ngIf="submitted">
-    <h4>You submitted successfully!</h4>
-    <button class="btn btn-success" (click)="newTutorial()">Añadir otro producto</button>
+    <div *ngIf="submitted">
+      <h4>Has enviado correctamente el producto!</h4>
+      <button class="btn btn-success" (click)="newTutorial()">Añadir otro producto</button>
+    </div>
   </div>
 </div>
+
+
+<div *ngIf="opcionSeleccionada === 'opcion2'">
+  <div class="form-group">
+    <label for="marca">Marca de la Bebida</label>
+    <input
+      type="text"
+      class="form-control"
+      id="marca"
+      required
+      [(ngModel)]="bebida.marca"
+      name="marca"
+    />
+  </div>
+
+    <div class="form-group">
+      <label for="gaseosa">La bebida es gaseosa?</label>
+      <input
+        type="checkbox"
+        class="form-control"
+        id="gaseosa"
+        required
+        [(ngModel)]="bebida.gaseosa"
+        name="gaseosa"
+      />
+    </div>
+
+      <div *ngIf="submitted">
+        <h4>Has enviado correctamente el producto!</h4>
+        <button class="btn btn-success" (click)="newBebida()">Añadir otro producto</button>
+      </div>
+
+</div>
+
+<div *ngIf="opcionSeleccionada === 'opcion3'">
+
+  <div class="form-group">
+    <label for="marca">Nombre de la fruta</label>
+    <input
+      type="text"
+      class="form-control"
+      id="nombre"
+      required
+      [(ngModel)]="fruta.nombre"
+      name="nombre"
+    />
+  </div>
+
+  <div class="form-group">
+    <label for="marca">Tipo de Fruta</label>
+    <input
+      type="text"
+      class="form-control"
+      id="tipo"
+      required
+      [(ngModel)]="fruta.tipo"
+      name="tipo"
+    />
+  </div>
+
+    <div *ngIf="submitted">
+      <h4>Has enviado correctamente el producto!</h4>
+      <button class="btn btn-success" (click)="newFruta()">Añadir otro producto</button>
+    </div>
+</div>
+
+</div>
+

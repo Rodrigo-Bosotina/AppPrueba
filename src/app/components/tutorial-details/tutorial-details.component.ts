@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges, Output, EventEmitter } from '@angular/core';
-import Tutorial from 'src/app/models/tutorial.model';
+import Productos from 'src/app/models/productos.model';
 import { TutorialService } from 'src/app/services/tutorial.service';
 
 @Component({
@@ -9,12 +9,12 @@ import { TutorialService } from 'src/app/services/tutorial.service';
 })
 export class TutorialDetailsComponent implements OnInit, OnChanges {
 
-  @Input() tutorial?: Tutorial;
+  @Input() producto?: Productos;
   @Output() refreshList: EventEmitter<any> = new EventEmitter();
-  currentTutorial: Tutorial = {
-    title: '',
-    description: '',
-    published: false
+  productoActual: Productos = {
+    nombre: '',
+    descripcion: '',
+    publicado: false
   };
   message = '';
 
@@ -26,15 +26,15 @@ export class TutorialDetailsComponent implements OnInit, OnChanges {
 
   ngOnChanges(): void {
     this.message = '';
-    this.currentTutorial = { ...this.tutorial };
+    this.productoActual = { ...this.producto };
   }
 
   updatePublished(status: boolean): void {
-    if (this.currentTutorial.id) {
-      this.tutorialService.update(this.currentTutorial.id, { published: status })
+    if (this.productoActual.id) {
+      this.tutorialService.update(this.productoActual.id, { publicado: status })
       .then(() => {
-        this.currentTutorial.published = status;
-        this.message = 'The status was updated successfully!';
+        this.productoActual.publicado = status;
+        this.message = 'El estado cambio exitosamente!';
       })
       .catch(err => console.log(err));
     }
@@ -42,23 +42,23 @@ export class TutorialDetailsComponent implements OnInit, OnChanges {
 
   updateTutorial(): void {
     const data = {
-      title: this.currentTutorial.title,
-      description: this.currentTutorial.description
+      nombre: this.productoActual.nombre,
+      descripcion: this.productoActual.descripcion
     };
 
-    if (this.currentTutorial.id) {
-      this.tutorialService.update(this.currentTutorial.id, data)
-        .then(() => this.message = 'The tutorial was updated successfully!')
+    if (this.productoActual.id) {
+      this.tutorialService.update(this.productoActual.id, data)
+        .then(() => this.message = 'El Producto fue actualizado correctamente!')
         .catch(err => console.log(err));
     }
   }
 
   deleteTutorial(): void {
-    if (this.currentTutorial.id) {
-      this.tutorialService.delete(this.currentTutorial.id)
+    if (this.productoActual.id) {
+      this.tutorialService.delete(this.productoActual.id)
         .then(() => {
           this.refreshList.emit();
-          this.message = 'The tutorial was updated successfully!';
+          this.message = 'El Producto fue actualizado correctamente!';
         })
         .catch(err => console.log(err));
     }

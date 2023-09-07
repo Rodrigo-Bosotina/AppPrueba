@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TutorialService } from 'src/app/services/tutorial.service';
 import { map } from 'rxjs/operators';
-import Tutorial from 'src/app/models/tutorial.model';
+import Productos from 'src/app/models/productos.model';
 
 @Component({
   selector: 'app-tutorials-list',
@@ -10,10 +10,10 @@ import Tutorial from 'src/app/models/tutorial.model';
 })
 export class TutorialsListComponent implements OnInit {
 
-  tutorials?: Tutorial[];
-  currentTutorial?: Tutorial;
-  currentIndex = -1;
-  title = '';
+  productos?: Productos[];
+  productoActual?: Productos;
+  IndexActual = -1;
+  nombre = '';
 
   constructor(private tutorialService: TutorialService) { }
 
@@ -22,8 +22,8 @@ export class TutorialsListComponent implements OnInit {
   }
 
   refreshList(): void {
-    this.currentTutorial = undefined;
-    this.currentIndex = -1;
+    this.productoActual = undefined;
+    this.IndexActual = -1;
     this.retrieveTutorials();
   }
 
@@ -35,13 +35,13 @@ export class TutorialsListComponent implements OnInit {
         )
       )
     ).subscribe(data => {
-      this.tutorials = data;
+      this.productos = data;
     });
   }
 
-  setActiveTutorial(tutorial: Tutorial, index: number): void {
-    this.currentTutorial = tutorial;
-    this.currentIndex = index;
+  setActiveTutorial(producto: Productos, index: number): void {
+    this.productoActual = producto;
+    this.IndexActual = index;
   }
 
 }
